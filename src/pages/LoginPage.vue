@@ -1,41 +1,37 @@
 <script setup>
-
+import FormInput from "@/components/tags/FormInput.vue";
+import ButtonTag from "@/components/tags/ButtonTag.vue";
 </script>
 
 <template>
-    <form>
-        <div class="row mb-3">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-            <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputEmail3">
-            </div>
-        </div>
-        <div class="row mb-3">
-            <label for="inputPassword3" class="col-sm-2 col-form-label">Parol</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control" id="inputPassword3">
-            </div>
-        </div>
-        <fieldset class="row mb-3">
-            <legend class="col-form-label col-sm-2 pt-0">Uylanganmisiz?</legend>
-            <div class="col-sm-10">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1"
-                           checked>
-                    <label class="form-check-label" for="gridRadios1">
-                        Ha
-                    </label>
+    <div class="row vh-100 justify-content-center align-items-center">
+        <div class="col-12 col-sm-8 col-md-6 col-xl-4">
+            <div class="row mb-3">
+                <div class="col-6">
+                    <ButtonTag text="Kirish" class="w-100 btn-outline-success"/>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                    <label class="form-check-label" for="gridRadios2">
-                        Yo'q
-                    </label>
+                <div class="col-6">
+                    <ButtonTag text="Ro'yxatdan o'tish" class="w-100 btn-outline-success"/>
                 </div>
             </div>
-        </fieldset>
-        <button type="submit" class="btn btn-primary">Kirish</button>
-    </form>
+            <form>
+                <FormInput id="signInEmail" label-name="Email" input-type="email"/>
+                <FormInput id="signInPassword" label-name="Parol"/>
+                <ButtonTag text="Kirish" class="btn-primary mb-3"/>
+            </form>
+
+            <form>
+                <FormInput id="signUpEmail" label-name="Email" input-type="email"/>
+                <FormInput id="signUpAge" label-name="Yoshingiz" input-type="number"/>
+                <FormInput id="signUpPassword" label-name="Parol"/>
+                <FormInput id="signUpConfirmPassword" label-name="Parolni tasdiqlang">
+                    <small class="text-danger">Parollar mos kelmadi!</small>
+                </FormInput>
+                <ButtonTag text="Ro'yxatdan o'tish" class="btn-primary"/>
+            </form>
+
+        </div>
+    </div>
 </template>
 
 <style scoped>

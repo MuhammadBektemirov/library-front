@@ -22,6 +22,20 @@ const routes = [
         meta: {
             layout: defineAsyncComponent(() => import('@/layouts/BlankLayout.vue'))
         }
+    },
+    {
+        path: '/edit-category',
+        component: () => import('@/pages/category/EditCategory.vue'),
+        meta: {
+            layout: defineAsyncComponent(() => import('@/layouts/DefaultLayout.vue'))
+        }
+    },
+    {
+        path: '/create-book',
+        component: () => import('@/pages/book/CreateBook.vue'),
+        meta: {
+            layout: defineAsyncComponent(() => import('@/layouts/DefaultLayout.vue'))
+        }
     }
 ]
 

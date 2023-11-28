@@ -1,37 +1,24 @@
 <script setup>
 
+import {useFetchBook} from "@/stores/models/book/getBook";
+import {useRoute} from "vue-router";
+
+const route = useRoute()
+const bookStore = useFetchBook()
+
+bookStore.fetchBook(route.params.bookId)
 </script>
 
 <template>
-    <h1>O'tkan kunlar</h1>
-
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dolore exercitationem hic libero, molestiae qui
-        quidem repudiandae similique voluptatum! A autem deleniti eius hic iure, mollitia possimus quae rem velit
-        voluptas. Consequuntur dolorem enim esse fugit necessitatibus nisi odio provident? Ab aperiam laboriosam magni
-        nam optio provident quis sapiente voluptatem.
-    </p>
-
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dolore exercitationem hic libero, molestiae qui
-        quidem repudiandae similique voluptatum! A autem deleniti eius hic iure, mollitia possimus quae rem velit
-        voluptas. Consequuntur dolorem enim esse fugit necessitatibus nisi odio provident? Ab aperiam laboriosam magni
-        nam optio provident quis sapiente voluptatem.
-    </p>
-
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dolore exercitationem hic libero, molestiae qui
-        quidem repudiandae similique voluptatum! A autem deleniti eius hic iure, mollitia possimus quae rem velit
-        voluptas. Consequuntur dolorem enim esse fugit necessitatibus nisi odio provident? Ab aperiam laboriosam magni
-        nam optio provident quis sapiente voluptatem.
-    </p>
-
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dolore exercitationem hic libero, molestiae qui
-        quidem repudiandae similique voluptatum! A autem deleniti eius hic iure, mollitia possimus quae rem velit
-        voluptas. Consequuntur dolorem enim esse fugit necessitatibus nisi odio provident? Ab aperiam laboriosam magni
-        nam optio provident quis sapiente voluptatem.
-    </p>
+    <div style="min-height: 70vh">
+        <div class="row">
+            <div class="col-6"><h1>{{ bookStore.getBook.name }}</h1></div>
+            <small class="col-6 text-end">{{ bookStore.getBook.createdAt?.slice(0, 10) }}</small>
+            <div class="col-12">
+                {{ bookStore.getBook.text }}
+            </div>
+        </div>
+    </div>
 </template>
 
 <style scoped>

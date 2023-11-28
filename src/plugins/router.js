@@ -35,7 +35,7 @@ const routes = [
         beforeEnter: ifAuthorized
     },
     {
-        path: '/book-info',
+        path: '/book-info/:bookId',
         component: () => import('@/pages/BookInfoPage.vue'),
         meta: {
             layout: defineAsyncComponent(() => import('@/layouts/DefaultLayout.vue'))
@@ -78,5 +78,6 @@ const routes = [
 
 export default createRouter({
     history: createWebHistory(),
-    routes
+    routes,
+    linkActiveClass: 'active'
 })

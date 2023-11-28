@@ -14,7 +14,7 @@ watch(
         if (preVal === undefined) {
             useFetchBooks().fetchBooks()
         } else {
-            useFetchBooks().fetchBooks('?category=' + route.params.id )
+            useFetchBooks().fetchBooks('?category=' + route.params.id)
         }
     },
     {
@@ -36,7 +36,7 @@ watch(
                 <div class="card-body">
                     <h5 class="card-title">{{ book.name }}</h5>
                     <p class="card-text">{{ book.description }}</p>
-                    <router-link to="/book-info" class="btn btn-primary">O'qish</router-link>
+                    <router-link :to="'/book-info/' + book.id" class="btn btn-primary">O'qish</router-link>
                 </div>
             </div>
         </div>

@@ -11,7 +11,8 @@ defineProps({
     id: {
         type: String,
         required: true
-    }
+    },
+    modelValue: {}
 })
 
 defineEmits(['update:modelValue'])
@@ -23,6 +24,7 @@ defineEmits(['update:modelValue'])
         <input
             :type="inputType"
             class="form-control"
+            :value="modelValue"
             :id="id"
             @input="$emit('update:modelValue', $event.target.value)"
         >

@@ -1,65 +1,45 @@
 <script setup>
+import {useFetchBooks} from "@/stores/models/book/getBooks";
+import {useRoute} from "vue-router";
+import {watch} from "vue";
 
+const host = import.meta.env.VITE_API_URL
+const route = useRoute()
+
+useFetchBooks().fetchBooks()
+
+watch(
+    () => route.params.id,
+    (preVal) => {
+        if (preVal === undefined) {
+            useFetchBooks().fetchBooks()
+        } else {
+            useFetchBooks().fetchBooks('?category=' + route.params.id )
+        }
+    },
+    {
+        immediate: true
+    }
+)
 </script>
 
 <template>
     <div class="row mt-3 mt-md-0">
 
-        <!-- kitob boshlandi -->
-        <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-3">
+        <div
+            v-for="book in useFetchBooks().getBooks"
+            :key="book.id"
+            class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-3"
+        >
             <div class="card">
-                <img src="@/assets/otkan-kunlar.jpg" class="card-img-top" alt="kitob rasmi">
+                <img :src="host + book.image.contentUrl" class="card-img-top" alt="kitob rasmi">
                 <div class="card-body">
-                    <h5 class="card-title">O'tkan kunlar</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the
-                        bulk of the card's content.</p>
+                    <h5 class="card-title">{{ book.name }}</h5>
+                    <p class="card-text">{{ book.description }}</p>
                     <router-link to="/book-info" class="btn btn-primary">O'qish</router-link>
                 </div>
             </div>
         </div>
-        <!-- kitob tugadi -->
-
-        <!-- kitob boshlandi -->
-        <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-3">
-            <div class="card">
-                <img src="@/assets/otkan-kunlar.jpg" class="card-img-top" alt="kitob rasmi">
-                <div class="card-body">
-                    <h5 class="card-title">O'tkan kunlar</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the
-                        bulk of the card's content.</p>
-                    <router-link to="/book-info" class="btn btn-primary">O'qish</router-link>
-                </div>
-            </div>
-        </div>
-        <!-- kitob tugadi -->
-
-        <!-- kitob boshlandi -->
-        <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-3">
-            <div class="card">
-                <img src="@/assets/otkan-kunlar.jpg" class="card-img-top" alt="kitob rasmi">
-                <div class="card-body">
-                    <h5 class="card-title">O'tkan kunlar</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the
-                        bulk of the card's content.</p>
-                    <router-link to="/book-info" class="btn btn-primary">O'qish</router-link>
-                </div>
-            </div>
-        </div>
-        <!-- kitob tugadi -->
-
-        <!-- kitob boshlandi -->
-        <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-3">
-            <div class="card">
-                <img src="@/assets/otkan-kunlar.jpg" class="card-img-top" alt="kitob rasmi">
-                <div class="card-body">
-                    <h5 class="card-title">O'tkan kunlar</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the
-                        bulk of the card's content.</p>
-                    <router-link to="/book-info" class="btn btn-primary">O'qish</router-link>
-                </div>
-            </div>
-        </div>
-        <!-- kitob tugadi -->
 
     </div>
 

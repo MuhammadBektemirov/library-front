@@ -10,14 +10,14 @@ const categories = computed(() => useFetchCategories().getCategories)
 <template>
     <div class="col-12 col-md-2">
         <div class="list-group">
-            <a
+            <router-link
                 v-for="category in categories"
                 :key="category.id"
-                href="#"
+                :to="'/categories/' + category.id"
                 class="list-group-item list-group-item-action"
             >
                 {{ category.name }}
-            </a>
+            </router-link>
         </div>
     </div>
 </template>

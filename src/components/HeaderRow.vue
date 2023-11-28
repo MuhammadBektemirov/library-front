@@ -1,5 +1,13 @@
 <script setup>
 
+import {useRouter} from "vue-router";
+
+const router = useRouter()
+function logOut() {
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('refreshToken')
+    router.push('/login')
+}
 </script>
 
 <template>
@@ -18,6 +26,9 @@
                             <li class="nav-item">
                                 <router-link class="nav-link" to="/login">Login</router-link>
                             </li>
+                            <li class="nav-item">
+                                <span @click="logOut" class="nav-link" style="cursor: pointer">Chiqish</span>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                    aria-expanded="false">
@@ -25,6 +36,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><router-link class="dropdown-item" to="edit-category">Update || Delete</router-link></li>
+                                    <li><router-link class="dropdown-item" to="create-category">Create</router-link></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
